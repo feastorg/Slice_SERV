@@ -1,0 +1,164 @@
+schema_version: "1.0"
+
+# ── Identity ──────────────────────────────────────────────────────────────────
+id: "slice-serv"
+name: "Servo Controller"
+status: "prototype"
+category: "actuation"
+
+summary: "5-channel PWM servo controller slice."
+description: null
+
+# ── Versioning ────────────────────────────────────────────────────────────────
+version:
+  hardware: "0.1.0"
+  firmware: "0.1.0"
+  manifest: "0.1.0"
+
+# ── Compatibility ─────────────────────────────────────────────────────────────
+compatibility:
+  slice_spec: ">=0.1.0 <0.2.0"
+  crumbs_protocol: null
+  anolis_provider_api: null
+
+# ── Hardware ──────────────────────────────────────────────────────────────────
+hardware:
+  mcu:
+    type: "dev-board-socket"
+    form_factor: "nano"
+    primary: "ATmega328P"
+    supported:
+      - "ATmega328P"
+  primary_ic: null
+  hw_gen_current: 1
+  hw_gen_supported: [1]
+  pcb:
+    layers: 2
+    thickness: "1.6mm"
+    copper_weight: "1oz"
+    dimensions: "70mm x 100mm"
+  connectors:
+    - ref: "J1"
+      type: "slice-bus-10pin"
+      purpose: "power-and-i2c"
+  mounting:
+    pattern: "slice-standard-v0"
+    hole_size: "M3"
+    inset: "5mm"
+  pcb_color_prototype: null
+  pcb_color_production: null
+  enclosure:
+    supported: false
+    path: null
+
+# ── Electrical ────────────────────────────────────────────────────────────────
+electrical:
+  input_voltage: "12V"
+  logic_voltage: "5V"
+  max_current: null
+  protection: null
+  isolation: null
+
+# ── Interfaces ────────────────────────────────────────────────────────────────
+interfaces:
+  host:
+    type: "i2c"
+    address_default: null
+    address_configurable: false
+  data:
+    inputs: []
+    outputs:
+      - name: "SERVO1"
+        type: "pwm"
+      - name: "SERVO2"
+        type: "pwm"
+      - name: "SERVO3"
+        type: "pwm"
+      - name: "SERVO4"
+        type: "pwm"
+      - name: "SERVO5"
+        type: "pwm"
+
+# ── Capabilities ──────────────────────────────────────────────────────────────
+capabilities:
+  - id: "servo_control"
+    channels: 5
+    control_modes:
+      - "position"
+
+# ── Firmware ──────────────────────────────────────────────────────────────────
+firmware:
+  language: "C++"
+  framework: "arduino"
+  build_system: "arduino-ide"
+  entry_point: "firmware/SERV.ino"
+  path: "firmware"
+  required: false
+  targets:
+    - "nano"
+  lib_deps:
+    - "Servo"
+  i2c:
+    address_default: null
+    address_configurable: false
+  libraries:
+    - name: "Servo"
+      purpose: "PWM servo control"
+
+# ── Protocol ──────────────────────────────────────────────────────────────────
+protocol: null
+
+# ── Software ──────────────────────────────────────────────────────────────────
+software: null
+
+# ── Artifacts ─────────────────────────────────────────────────────────────────
+artifacts:
+  schematic: "hardware/BREAD_Slice.kicad_sch"
+  pcb: "hardware/BREAD_Slice.kicad_pcb"
+  firmware: "firmware/SERV.ino"
+  docs: "documentation/BREAD_SLC_SERV_R0.odt"
+  bom: "documentation/BOM_SERV.ods"
+  gerbers: "hardware/Gerbers.zip"
+  pick_and_place: null
+  datasheets: []
+
+# ── Manufacturing ─────────────────────────────────────────────────────────────
+manufacturing: null
+
+# ── Validation ────────────────────────────────────────────────────────────────
+validation: null
+
+# ── Safety ────────────────────────────────────────────────────────────────────
+safety: null
+
+# ── Dependencies ──────────────────────────────────────────────────────────────
+dependencies: null
+
+# ── Relations ─────────────────────────────────────────────────────────────────
+related: null
+
+# ── Maintainers ───────────────────────────────────────────────────────────────
+maintainers:
+  - name: "Cameron Brooks"
+    role: "owner"
+
+# ── License ───────────────────────────────────────────────────────────────────
+license:
+  hardware: "CERN-OHL-S-2.0"
+  firmware: "GPL-3.0-only"
+  software: null
+  docs: "CC-BY-4.0"
+
+# ── Repository ────────────────────────────────────────────────────────────────
+repository:
+  url: "https://github.com/feastorg/Slice_SERV"
+
+# ── Metadata ──────────────────────────────────────────────────────────────────
+metadata:
+  created: "2026-05-19"
+  updated: "2026-05-19"
+  tags:
+    - "servo"
+    - "pwm"
+    - "motor-control"
+    - "actuation"
