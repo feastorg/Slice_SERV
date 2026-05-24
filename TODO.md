@@ -1,13 +1,18 @@
 # TODO
 
-## KiBot CI/Docs Pipeline
+## Pass 1 — CI Pipeline
 
-- ERC job: pass
-- DRC job: fail (pre-ERC finds 2 ERC errors)
-- Fab job: fail (pre-ERC finds 2 ERC errors)
-- gen-kibot-index: skipped
-- deploy-pages: skipped
+- [x] Pipeline added
+- [x] ERC: FAIL — 2 errors (power_pin_not_driven x2)
+- [x] DRC: PASS
+- [ ] Fab: SKIPPED (blocked by ERC pre-flight)
+- [ ] gen-kibot-index: SKIPPED
+- [ ] deploy-pages: SKIPPED
 
-### ERC Errors (2)
+## Pass 2 — Pre-Fab Review
 
-- power_pin_not_driven: Input Power pin not driven by any Output Power pins (x2)
+- [ ] Fix 2x power_pin_not_driven ERC errors
+- [ ] Verify BOM completeness and sourcing
+- [ ] Confirm board outline and mounting holes
+- [ ] Footprint verification against datasheets
+- [ ] Design review sign-off
